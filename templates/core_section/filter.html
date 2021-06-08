@@ -1,0 +1,49 @@
+
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+<div class='bg-light border p-3 rounded'>
+    <h4>Search Netflix Originals</h4>
+    <p class="col-md-8">Filter by Genre and Language</p>
+
+    <div class="mt-4 mb-2">
+      <form action='' method='POST'>
+        {% csrf_token %}
+        <select id="{{}}" name="genre">
+            {% for i in dataset %}
+            <option value="{{}}">{{genre}}</option>
+            {% endfor %}         
+          
+          </select> 
+          <select id="" name="language">
+            
+            <option value="">{{}}</option>
+            {% endfor %}         
+          
+          </select> 
+        <!--div class='row align-items-center'>
+          <div class='col-md-3'>
+            <label class='fw-bold'>Genre</label>
+            <select class="form-select" aria-label="Default select example">
+              <option value="action">Action</option>
+              <option value="comedy">Comedy</option>
+            </select>
+          </div>
+          <div class='col-md-3'>
+            <label class='fw-bold'>Language</label>
+            <select class="form-select" aria-label="Default select example">
+              <option value="English">English</option>
+              <option value="hindi">Hindi</option>
+              <option value="malayalam">Malayalam</option>
+            </select>
+          </div-->
+          <div class='col-md-12'>
+            <div class='py-2'>
+              <input type='submit' class='btn btn-sm btn-primary' value='Search' />
+            </div>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+  {% endblock content %}
