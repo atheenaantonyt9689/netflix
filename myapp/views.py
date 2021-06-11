@@ -1,49 +1,47 @@
+from typing import Counter
 from django.shortcuts import render
 from .models import Netflix
 
 from django.views import View
-class FilterView(View):
-    model=Netflix
-    template_name='core_section/filter.html'
 
-    def get(self,request,*args,**kwargs):
-        
-        all=Netflix.objects.all()
-
-        print(all)
-            
-
-        context={'all':all
-        }
-
-        return render(request,"core_section/home.html",context)
         
 # Create your views here.
 class HomePageView(View):
     model=Netflix
-    template_name='core_section/filter.html'
+    template_name='core_section/test.html'
 
     def get(self,request,*args,**kwargs):
         
-        dataset=Netflix.objects.all()
+        dataset=Netflix.objects.all()       
 
-        print(dataset)
-            
-
-        context={'dataset':dataset
+        context={
+            'dataset':dataset
         }
 
         return render(request,"core_section/filter.html",context)
         
     def post(self,request,*args,**kwargs):
+        genre=request.POST.get('genre')
+        language=request.POST.get('language')
+        print(language)
+       
+        search_result=Netflix.objects.filter(genre=genre,language=language)
+        count_search=Netflix.objects.filter(genre=genre,language=language).count()
+        
 
-        xx=request.POST.get("genre")
+        print("ndbemnemjn",search_result)
+        
+
+        
         
         context={
+            'search_result':search_result,
+            'count_search':count_search
+           
 
         }
        
-        return render(request,"core_section/home.html",context)
+        return render(request,"core_section/filter.html",context)
     
 
 

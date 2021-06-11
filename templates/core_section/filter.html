@@ -1,49 +1,82 @@
-
 {% extends 'layouts/base.html' %}
 {% block content %}
 
 <div class='bg-light border p-3 rounded'>
-    <h4>Search Netflix Originals</h4>
-    <p class="col-md-8">Filter by Genre and Language</p>
+  <h4>Search Netflix Originals</h4>
+  <p class="col-md-8">Filter by Genre and Language</p>
 
-    <div class="mt-4 mb-2">
-      <form action='' method='POST'>
-        {% csrf_token %}
-        <select id="{{}}" name="genre">
-            {% for i in dataset %}
-            <option value="{{}}">{{genre}}</option>
-            {% endfor %}         
+  <div class="mt-4 mb-2">
+    <form action='' method='POST'>
+      {% csrf_token %}
+      <select id="genre" name="genre">
+        {% for i in dataset %}
+
+        <option value="{{i.genre}}">{{i.genre}}</option>
+        {% endfor %}
+
+      </select>
+      <select id="language" name="language">
+        {% for i in dataset %}
+        <option value="{{i.language}}">{{i.language}}</option>
+        {% endfor %}
+
+      </select>
+      <div class='col-md-12'>
+        <div class='py-2'>
+          <input type='submit' class='btn btn-sm btn-primary' value='Search' />
+        </div>
+      </div>
+  </div>
+  </form>
+  <div>
+    </div>
+    
+        <div class='mt-4 py-3'>             
           
-          </select> 
-          <select id="" name="language">
+
+  <div class='my-2 py-2 px-3 rounded alert alert-info'>Found {{count_search}} results.</div>
+       
+
+        
+  <div class="row g-3">
+    
+    
+    
+    <div class="col-md-4">
+      <div class="card">
+        {% if search_result %}
+        <div class="card-body p-0">
+          <div class='p-2'>
+            {% for i in search_result %}
+            <h5 class="card-title">{{i.title}}</h5>
             
-            <option value="">{{}}</option>
-            {% endfor %}         
-          
-          </select> 
-        <!--div class='row align-items-center'>
-          <div class='col-md-3'>
-            <label class='fw-bold'>Genre</label>
-            <select class="form-select" aria-label="Default select example">
-              <option value="action">Action</option>
-              <option value="comedy">Comedy</option>
-            </select>
+            <div class='badges'>
+              
+              <span class='me-1 badge bg-secondary'></span>
+              <span class='me-1 badge bg-secondary'></span>
+             
+            </div>
+            {% endfor %}
+            {% else %}
+            
           </div>
-          <div class='col-md-3'>
-            <label class='fw-bold'>Language</label>
-            <select class="form-select" aria-label="Default select example">
-              <option value="English">English</option>
-              <option value="hindi">Hindi</option>
-              <option value="malayalam">Malayalam</option>
-            </select>
-          </div-->
-          <div class='col-md-12'>
-            <div class='py-2'>
-              <input type='submit' class='btn btn-sm btn-primary' value='Search' />
+          {% endif %}
+          <div class='mt-3 bg-light rouned p-2'>
+            <div class='row g-1 p-0'>
+              <div class='col-6'>
+                <div class='fw-bold'></div>
+                <div class='fw-light text-muted'>dcdd</div>
+              </div>
+              <div class='col-6'>
+                <div class='fw-bold text-end'></div>
+                <div class='fw-light text-muted text-end'></div>
+              </div>
             </div>
           </div>
         </div>
-    </form>
+      </div>
     </div>
-  </div>
-  {% endblock content %}
+  </div>     
+      
+      
+      {% endblock content %}
